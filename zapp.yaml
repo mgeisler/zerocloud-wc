@@ -1,0 +1,33 @@
+execution:
+  groups:
+    - name: mapper
+      path: file://python:python
+      args: mapper.py
+      devices:
+      - name: python
+      - name: input
+        path: swift://~/data/*.txt
+      connect:
+      - reducer
+    - name: reducer
+      path: file://python:python
+      args: reducer.py
+      devices:
+      - name: python
+      - name: stdout
+meta:
+  Version: "0.2"
+  name: "wc"
+  author: "Martin Geisler"
+  Summary: >-
+
+    This is a small map-reduce demo. It counts words in the data files
+    specified and sums up the result like the normal "wc" command
+    does.
+
+help:
+  description: ""
+  args: [ ]
+
+bundling:
+  - "*.py"
